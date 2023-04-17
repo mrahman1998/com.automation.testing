@@ -21,6 +21,7 @@ public class CartPage extends Base{
 		mouseHover(driver, shop_now_btn);
 		WebElement add_to_basket = driver.findElement(By.xpath("(//button[@title=\"Add to basket\"])[1]"));
 		add_to_basket.click();
+		//add
 	}
 
 	
