@@ -10,11 +10,6 @@ public class LoginSteps {
 	LoginPage login=new LoginPage();
 	
 	
-	@Given("user launch site url")
-	public void login() {
-		login.login_site_url();
-	}
-	
 	@When("accept all cookies")
 	public void accept_all_cookies() {
 		login.accept_all_cookies();
@@ -56,10 +51,6 @@ public class LoginSteps {
 	   login.validate_login();
 	}
 	
-	@And("close the browser")
-	public void close_browser(){
-		login.close_browser();
-	}
 	
 	
 }

@@ -8,7 +8,6 @@ import base.Base;
 
 public class RegistrationPage extends Base{
 
-	Base b = new Base();
 	
 
 	public void go_to_signin_register() {
