@@ -22,7 +22,7 @@ Feature: Sauce demo login
 
   @Sm
   Scenario: Sauce demo login with correct username and password
-    Given Login to site url
+    
     When Enter username
     And Enter password
     And Click login button

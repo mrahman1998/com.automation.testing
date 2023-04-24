@@ -1,7 +1,6 @@
 package page;
 
 import static org.junit.Assert.assertTrue;
-import java.util.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -9,11 +8,6 @@ import base.Base;
 
 public class LoginPage extends Base {
 
-	Properties prop = new Properties();
-	
-	public void login_site_url() {
-		launch_url();
-	}
 	
 	public void accept_all_cookies() {
 		WebElement cookies=driver.findElement(By.xpath("//button[@id=\"onetrust-accept-btn-handler\"]"));
