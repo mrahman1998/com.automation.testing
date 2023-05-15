@@ -7,16 +7,16 @@ import page.AgeVerificationPage;
 
 public class AgeVerificationSteps extends Base {
 	
-	AgeVerificationPage login = new AgeVerificationPage();
+	AgeVerificationPage age = new AgeVerificationPage();
 	
-	@And ("age below under eighteen")
+	@And ("select age below eighteen")
 	public void age_below() {
-	    login.age_below();
+	    age.age_below();
 	}
 
 	@Then("validate response")
 	public void validate_response() throws InterruptedException {
-	    login.validate_response();
+	    age.validate_response();
 	}
 
 }

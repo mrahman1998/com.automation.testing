@@ -20,7 +20,7 @@ public class Hooks extends Base{
 		driver = new ChromeDriver(options);
 		driver.get(prop.getProperty("url"));
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 		
 	}
 	

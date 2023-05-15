@@ -1,6 +1,6 @@
 package stepDefination;
+
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import page.LoginPage;
@@ -26,15 +26,12 @@ public class LoginSteps {
 		login.age_ver();
 	}
 
-	@And("go to account")
-	public void go_to_account(){
-		login.go_to_accounts();
+	@And("click sign in button")
+	public void click_signInButton(){
+		login.click_signInButton();
 	}
 	
-	@And("go to signin or register")
-	public void go_to_login(){
-		login.go_to_login();
-	}
+	
 	
 	@And("enter valid email and password")
 	public void enter_valid_email_and_password() {
@@ -49,6 +46,21 @@ public class LoginSteps {
 	@Then("validate login")
 	public void validate_login() {
 	   login.validate_login();
+	}
+	
+	@And("click on forget password")
+	public void click_on_forget_password() {
+	    login.click_on_forget_password();
+	}
+
+	@And("add email and click submit")
+	public void email_and_click_submit() {
+	   login.email_and_click_submit();
+	}
+
+	@Then("validate password recovery message")
+	public void validate_password_recovery_message() {
+	    login.validate_password_recovery_message();
 	}
 	
 	

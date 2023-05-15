@@ -3,15 +3,20 @@ package page;
 import static org.junit.Assert.assertTrue;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import base.Base;
 
 public class LoginPage extends Base {
 
 	
-	public void accept_all_cookies() {
+	public void accept_all_cookies() { 
+		
 		WebElement cookies=driver.findElement(By.xpath("//button[@id=\"onetrust-accept-btn-handler\"]"));
-		cookies.click();
+
+		try {
+			waitUntilElementClickable(cookies).click();
+		} catch (Exception e) {
+			jsExecuterClick(cookies);
+		}
 	}
 	
 	public void select_country() {
@@ -21,46 +26,64 @@ public class LoginPage extends Base {
 	
 	
 	public void age_ver() {
-		WebElement age_rest_btn=driver.findElement(By.xpath("//button[@id=\"btn-entry-age-allow\"]"));
-		age_rest_btn.click();
+		
+		WebElement age_rest_btn=driver.findElement(By.xpath("(//button[@class=\"button-root_highPriority-3u6 button-root-16x clickable-root-2gB\"])[17]"));
+		try{
+			waitUntilElementClickable(age_rest_btn).click();
+		} catch (Exception e) {
+			jsExecuterClick(age_rest_btn);
+		}
 	}
 	
-	public void go_to_accounts() {
-		WebElement account=driver.findElement(By.xpath("//span[@class=\"icon-account\"]"));
-		Actions a = new Actions(driver);
-		a.moveToElement(account).build().perform();
-	}
-	
-	public void go_to_login() {
-		WebElement signIn_register=driver.findElement(By.xpath("//a[@href=\"https://www.vuse.com/gb/en/customer/account\"]"));
-		Actions a = new Actions(driver);
-		a.moveToElement(signIn_register);
-		a.click().build().perform();
+	public void click_signInButton(){
+		WebElement signInButton=driver.findElement(By.xpath("//span[@class=\"accountChip-root-2kC\"]"));
+
+		signInButton.click();
 	}
 	
 	public void enter_valid_email_and_password() {
-	    WebElement email = driver.findElement(By.xpath("//input[@id=\"email\"]"));
-	    email.sendKeys("jjbvvh2@gmail.com");
-	    
-	    WebElement password = driver.findElement(By.xpath("(//input[@id=\"pass\"])[1]"));
+		
+		WebElement email = driver.findElement(By.xpath("//input[@autocomplete=\"email\"]"));
+		WebElement password = driver.findElement(By.xpath("//input[@type=\"password\"]"));
+ 	    email.sendKeys("jjbvvh2@gmail.com");
 	    password.sendKeys("Password@1");
 	    
 	}
 	
 	public void click_login() {
-		WebElement login_btn=driver.findElement(By.xpath("(//button[@id=\"send2\"])[1]"));
-		login_btn.click();
+		
+		WebElement login_btn=driver.findElement(By.xpath("//div[@class=\"signInSocial-buttonsContainer-2mE\"]"));
+		waitUntilElementClickable(login_btn).click();
 	}
 	
 	public void validate_login() {
-		
-		   WebElement ele= driver.findElement(By.xpath("//h2[@class=\"account-info__heading\"]"));
-
-		   assertTrue(ele.isDisplayed());
+		final WebElement ele= driver.findElement(By.xpath("//div[@class=\"accountMenuItems-title-O5o\"]"));
+		assertTrue(ele.isDisplayed());
 	}
 	
-	public void close_browser() {
-		driver.quit();
+	public void click_on_forget_password() {
+	    
+	    WebElement forget_pass = driver.findElement(By.xpath("//span[@class=\"button-content-3ns\" and text() =  \"Forgot Password?\"]"));
+	    try{
+	    	waitUntilElementClickable(forget_pass).click();
+	    } catch (Exception e) {
+			jsExecuterClick(forget_pass);
+		}
+	}
+
+	public void email_and_click_submit() {
+		
+		WebElement recover_password = driver.findElement(By.xpath("//h2[@class=\"forgotPassword-title-30G\"]"));
+	    waitUntilElementVisible(recover_password);
+	    WebElement email_field = driver.findElement(By.xpath("//input[@class=\"textInput-input-BvJ field-input-1he field-input-23y\" and @name=\"email\"]"));
+	    email_field.sendKeys("jjbvvh2@gmail.com");
+	    WebElement submit = driver.findElement(By.xpath("//button[@type=\"submit\"]"));
+	    submit.click();
+	}
+
+	public void validate_password_recovery_message() {
+	    WebElement password_recovery_message = driver.findElement(By.xpath("//p[@class=\"formSubmissionSuccessful-text-1Q0\"]"));
+	    assertTrue(password_recovery_message.getText().contains("you will receive an email with a link"));
 	}
 	
 }

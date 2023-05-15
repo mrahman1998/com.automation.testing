@@ -1,7 +1,9 @@
-Feature: Age validation
+Feature: Age validation popup
 
-@Smoke
-Scenario: Verify user gets proper respose while age is below 18
-When accept all cookies
-And age below under eighteen
-Then validate response
+Background:	
+	When accept all cookies
+
+@Task
+Scenario: Verify user gets proper error message while age is below eighteen	
+	And select age below eighteen
+	Then validate response

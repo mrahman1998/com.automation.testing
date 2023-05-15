@@ -4,16 +4,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 
 import org.codehaus.plexus.util.FileUtils;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Base {
 	
@@ -41,7 +45,7 @@ public class Base {
 		s.selectByVisibleText(str);
 	}
 	
-	public void pressEnterKeyboard(WebDriver driver) {
+	public void pressEnter(WebDriver driver) {
 		Actions a = new Actions(driver);
 		a.sendKeys(Keys.ENTER).build().perform();
 	}
@@ -53,7 +57,7 @@ public class Base {
 	
 	public void scrollToElement(WebDriver driver, WebElement ele) {
 		Actions a = new Actions(driver);
-		a.scrollToElement(ele).build().perform();;
+		a.scrollToElement(ele).build().perform();
 	}
 	
 	public void screenshot() {
@@ -69,4 +73,20 @@ public class Base {
 		}
 	}
 	
+	public void jsExecuterClick(WebElement ele) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click()", ele);
+		
+	}
+	
+	public WebElement waitUntilElementVisible(WebElement ele) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		return wait.until(ExpectedConditions.visibilityOf(ele));
+	}
+	
+	public WebElement waitUntilElementClickable(WebElement ele) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		return wait.until(ExpectedConditions.elementToBeClickable(ele));
+	}
+
 }
